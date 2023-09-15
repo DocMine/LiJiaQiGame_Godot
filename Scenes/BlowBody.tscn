@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://x4nlytlyssae"]
+
+[ext_resource type="Script" path="res://Scripts/BlowBody.gd" id="1_kmvl8"]
+[ext_resource type="SpriteFrames" uid="uid://x2cjymvp6b7y" path="res://Assets/AnimatLJQ.tres" id="2_d0pha"]
+[ext_resource type="Texture2D" uid="uid://8vessbabom6g" path="res://Assets/coin.png" id="3_lv87r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mce64"]
+radius = 87.023
+
+[sub_resource type="Gradient" id="Gradient_s8fqi"]
+offsets = PackedFloat32Array(0.177358, 0.498113, 1)
+colors = PackedColorArray(0.596078, 0.317647, 0.12549, 0, 0.823529, 0.662745, 0.266667, 0.392157, 1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7a2fa"]
+radius = 43.0
+
+[node name="Blowbody" type="Node2D"]
+script = ExtResource("1_kmvl8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_d0pha")
+animation = &"Idle"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BreathArea" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BreathArea"]
+position = Vector2(-22, 18)
+shape = SubResource("CircleShape2D_mce64")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(-17, -99)
+emitting = false
+amount = 16
+lifetime = 0.8
+one_shot = true
+speed_scale = 2.0
+texture = ExtResource("3_lv87r")
+direction = Vector2(0, 0)
+spread = 120.0
+gravity = Vector2(0, -980)
+initial_velocity_max = 166.66
+angular_velocity_min = -517.94
+angular_velocity_max = 553.85
+color_ramp = SubResource("Gradient_s8fqi")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(-15, -116)
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(-2, -8)
+shape = SubResource("CircleShape2D_7a2fa")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="BreathArea" to="." method="_on_breath_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

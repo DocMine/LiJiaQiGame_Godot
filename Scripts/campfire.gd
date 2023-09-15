@@ -1,0 +1,13 @@
+extends StaticBody2D
+
+@onready var AwakeArea:Area2D = $AwakeArea
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func _on_awake_area_body_entered(body):
+	if body.is_in_group("enemy"):
+		GlobalVars.AwakeningSisters += 1
+		body.Blowed()

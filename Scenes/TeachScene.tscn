@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfyxcgbgceylc"]
+
+[ext_resource type="Script" path="res://Scripts/Teach.gd" id="1_prum7"]
+[ext_resource type="Texture2D" uid="uid://d2hfcg6jhfpce" path="res://Assets/TeachImgs/TeachBG.jpg" id="1_x5t1p"]
+[ext_resource type="PackedScene" uid="uid://xyf5kleke3vc" path="res://Tool_MainScene/scenes/ActiveButton.tscn" id="2_lkbr6"]
+[ext_resource type="Texture2D" uid="uid://cd5uwb0y8rx4j" path="res://Assets/lijiaqi_Head.png" id="3_o3shd"]
+
+[node name="teachScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_prum7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x5t1p")
+
+[node name="Button" parent="." instance=ExtResource("2_lkbr6")]
+layout_mode = 1
+offset_left = 1317.0
+offset_top = -222.0
+offset_right = -116.0
+offset_bottom = -70.0
+text = "下一条"
+icon = ExtResource("3_o3shd")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

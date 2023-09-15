@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdqhs46gegp6d"]
+
+[ext_resource type="Script" path="res://HighscoreList/scripts/score_info_item.gd" id="1_4nvir"]
+[ext_resource type="FontFile" uid="uid://ban5vw8iybm4p" path="res://Assets/FONT/VonwaonBitmap-16px.ttf" id="2_rucb4"]
+
+[node name="ScoreInfoItem" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_4nvir")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label_name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_rucb4")
+theme_override_font_sizes/font_size = 50
+text = "mammiya"
+horizontal_alignment = 1
+
+[node name="Label_score" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_rucb4")
+theme_override_font_sizes/font_size = 50
+text = "woqutama"
+horizontal_alignment = 1
+
+[node name="Label_date" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_rucb4")
+theme_override_font_sizes/font_size = 50
+text = "wocaoniubi"
+horizontal_alignment = 1

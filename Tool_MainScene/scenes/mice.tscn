@@ -1,0 +1,114 @@
+[gd_scene load_steps=10 format=3 uid="uid://dtvhw7k4sewg8"]
+
+[ext_resource type="Texture2D" uid="uid://cqqmlpbn2qayt" path="res://Tool_MainScene/Imgs/spritesheet.png" id="1_o1e12"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2yfv"]
+atlas = ExtResource("1_o1e12")
+region = Rect2(192, 195, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8nye"]
+atlas = ExtResource("1_o1e12")
+region = Rect2(208, 195, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oku4m"]
+atlas = ExtResource("1_o1e12")
+region = Rect2(224, 195, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cq4b"]
+atlas = ExtResource("1_o1e12")
+region = Rect2(240, 195, 16, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_keev4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2yfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8nye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oku4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cq4b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_m5vf6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ok30j"]
+resource_name = "runLR"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(0, 0, 0),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(-5, 5), Vector2(5, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.998, 1, 2),
+"transitions": PackedFloat32Array(-2, 1, 1, -2),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(100, 0), Vector2(-100, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_byfgu"]
+_data = {
+"RESET": SubResource("Animation_m5vf6"),
+"runLR": SubResource("Animation_ok30j")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0.67451)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_keev4")
+autoplay = "default"
+frame_progress = 0.363254
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "runLR"
+libraries = {
+"": SubResource("AnimationLibrary_byfgu")
+}

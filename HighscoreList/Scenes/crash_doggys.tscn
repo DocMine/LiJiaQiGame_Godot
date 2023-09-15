@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://e2w543c884k6"]
+
+[ext_resource type="Script" path="res://HighscoreList/scripts/crash_doggys.gd" id="1_khemj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi17w"]
+size = Vector2(3075, 274.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqs0w"]
+size = Vector2(295.5, 1202)
+
+[node name="CrashDoggys" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_khemj")
+
+[node name="wall" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2(966, 1260)
+shape = SubResource("RectangleShape2D_pi17w")
+
+[node name="wall4" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall4"]
+position = Vector2(974, -168)
+shape = SubResource("RectangleShape2D_pi17w")
+
+[node name="wall5" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall5"]
+position = Vector2(-196, 522)
+shape = SubResource("RectangleShape2D_tqs0w")
+
+[node name="wall6" type="RigidBody2D" parent="."]
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall6"]
+position = Vector2(2130, 543)
+shape = SubResource("RectangleShape2D_tqs0w")

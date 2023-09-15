@@ -1,0 +1,213 @@
+[gd_scene load_steps=18 format=3 uid="uid://vkx6xyl26f2s"]
+
+[ext_resource type="PackedScene" uid="uid://x4nlytlyssae" path="res://Scenes/BlowBody.tscn" id="1_yglg0"]
+[ext_resource type="AudioStream" uid="uid://b5kr0nx21kr8k" path="res://Assets/Audios/blow.wav" id="2_gu4g6"]
+[ext_resource type="AudioStream" uid="uid://ben547tomr2nh" path="res://Assets/Audios/snif.wav" id="3_cx51a"]
+[ext_resource type="AudioStream" uid="uid://x8n7vyl2gg82" path="res://Assets/Audios/xiqi.wav" id="4_de3w5"]
+[ext_resource type="AudioStream" uid="uid://dkp4kjda34l23" path="res://Assets/Audios/unwelcomschool.mp3" id="5_oxlv5"]
+[ext_resource type="PackedScene" uid="uid://dcikxiplqdp1h" path="res://Scenes/Lijiaqi.tscn" id="6_l1cuk"]
+[ext_resource type="AudioStream" uid="uid://t6j3bwtkhyjp" path="res://Assets/Audios/fanche/luanshuo.wav" id="7_nd6y7"]
+[ext_resource type="AudioStream" uid="uid://cnpbdaq4pfgi7" path="res://Assets/Audios/fanche/naliguile.wav" id="8_ny5j3"]
+[ext_resource type="AudioStream" uid="uid://blvyyeup55imv" path="res://Assets/Audios/fanche/zhangmeizhang.wav" id="9_gf3xd"]
+[ext_resource type="AudioStream" uid="uid://4dmq21ecmlwx" path="res://Assets/Audios/fanche/fengdiaole.wav" id="10_j3se1"]
+[ext_resource type="PackedScene" uid="uid://dpusrwhymkmik" path="res://Scenes/CoinFire.tscn" id="11_g1tgl"]
+[ext_resource type="Script" path="res://Scripts/UI.gd" id="12_7w7w2"]
+[ext_resource type="FontFile" uid="uid://ban5vw8iybm4p" path="res://Assets/FONT/VonwaonBitmap-16px.ttf" id="12_gom83"]
+[ext_resource type="Script" path="res://Scripts/EnemyGenerator.gd" id="14_u0m45"]
+
+[sub_resource type="Animation" id="Animation_smhbn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q62sl"]
+resource_name = "flash"
+length = 0.3
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7snns"]
+_data = {
+"RESET": SubResource("Animation_smhbn"),
+"flash": SubResource("Animation_q62sl")
+}
+
+[node name="BlowGame_Scene" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -53.0
+offset_top = -71.0
+offset_right = 2011.0
+offset_bottom = 1156.0
+color = Color(0.72549, 0.333333, 0.34902, 1)
+
+[node name="Node2D" type="Node2D" parent="ColorRect"]
+
+[node name="Label" type="Label" parent="ColorRect/Node2D"]
+offset_left = 163.0
+offset_top = 216.0
+offset_right = 1363.0
+offset_bottom = 416.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 150
+text = "L J Q 直播间"
+
+[node name="lixing" type="Label" parent="ColorRect/Node2D"]
+offset_left = 428.0
+offset_top = 399.0
+offset_right = 548.0
+offset_bottom = 430.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 30
+text = "理性消费"
+
+[node name="lixing2" type="Label" parent="ColorRect/Node2D"]
+offset_left = 570.0
+offset_top = 392.0
+offset_right = 1050.0
+offset_bottom = 512.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 120
+text = "快乐购物"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect/Node2D"]
+autoplay = "flash"
+libraries = {
+"": SubResource("AnimationLibrary_7snns")
+}
+
+[node name="Camp" parent="." instance=ExtResource("11_g1tgl")]
+position = Vector2(1695, 963)
+
+[node name="Blowbody" parent="." instance=ExtResource("1_yglg0")]
+position = Vector2(996, 906)
+scale = Vector2(1.5, 1.5)
+Sound_blow = ExtResource("2_gu4g6")
+Sound_snif = ExtResource("3_cx51a")
+Sound_xiqi = ExtResource("4_de3w5")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+position = Vector2(953, 1134)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+position = Vector2(17, -17)
+polygon = PackedVector2Array(-1366, -1686, -1356, 396, 1399, 399, 1378, -1451, 625, -1299, 612, -344, 1108, -317, 1031, -23, -1022, -18, -955, -1510)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oxlv5")
+autoplay = true
+
+[node name="Lijiaqi" parent="." node_paths=PackedStringArray("CampFire") instance=ExtResource("6_l1cuk")]
+Sound_LuanShuo = ExtResource("7_nd6y7")
+Sound_Naliguile = ExtResource("8_ny5j3")
+Sound_RenzhenGongzuo = ExtResource("9_gf3xd")
+Sound_Fengdiaole = ExtResource("10_j3se1")
+CampFire = NodePath("../Camp")
+
+[node name="UI" type="Control" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("12_7w7w2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_left = 1315.0
+offset_top = 22.0
+offset_right = 1884.0
+offset_bottom = 306.0
+
+[node name="Coins" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Coins"]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 127.0
+offset_bottom = 31.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 30
+text = "公关资金"
+
+[node name="Coinslot" type="HBoxContainer" parent="UI/VBoxContainer/Coins"]
+custom_minimum_size = Vector2(550, 55)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 37.0
+offset_right = 556.0
+offset_bottom = 92.0
+
+[node name="Sisters" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Sisters"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 18.0
+offset_right = 124.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 30
+text = "清醒姐妹"
+
+[node name="SisSlot" type="HBoxContainer" parent="UI/VBoxContainer/Sisters"]
+custom_minimum_size = Vector2(550, 55)
+layout_mode = 0
+offset_left = 5.0
+offset_top = 56.0
+offset_right = 555.0
+offset_bottom = 111.0
+
+[node name="Score" type="Control" parent="UI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UI/VBoxContainer/Score"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 35.0
+offset_right = 86.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("12_gom83")
+theme_override_font_sizes/font_size = 40
+text = "总分"
+
+[node name="UIAudioPlayer" type="AudioStreamPlayer" parent="UI"]
+
+[node name="EnemyGenerator" type="Node2D" parent="."]
+position = Vector2(73, -146)
+script = ExtResource("14_u0m45")
+
+[node name="Timer" type="Timer" parent="EnemyGenerator"]
+
+[connection signal="timeout" from="EnemyGenerator/Timer" to="EnemyGenerator" method="_on_timer_timeout"]

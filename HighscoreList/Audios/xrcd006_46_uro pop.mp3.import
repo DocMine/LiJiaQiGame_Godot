@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dr88ap78bs8y7"
+path="res://.godot/imported/xrcd006_46_uro pop.mp3-af42e9761df6c4894c9e81af4cabee52.mp3str"
+
+[deps]
+
+source_file="res://HighscoreList/Audios/xrcd006_46_uro pop.mp3"
+dest_files=["res://.godot/imported/xrcd006_46_uro pop.mp3-af42e9761df6c4894c9e81af4cabee52.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
