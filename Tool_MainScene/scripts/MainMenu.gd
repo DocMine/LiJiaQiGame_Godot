@@ -13,6 +13,10 @@ func _on_audio_bgm_finished():
 
 
 func _on_button_pressed():
+	GlobalVars.Score = 0
+	GlobalVars.NowCoins = 5
+	GlobalVars.EnemyBornTime = 5
+	GlobalVars.AwakeningSisters = 0
 	get_tree().change_scene_to_file("res://Scenes/TeachScene.tscn")
 
 
